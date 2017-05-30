@@ -24,9 +24,10 @@ var persons = await personsService.GetAllAsync();
 
 ```cs
 var myKey = "MY_PIPEDRIVE_API_KEY";
-var client = new PipeDriveClient<Person, MyCustomOrganization,Deal,Product>(myKey);
+var client = new PipeDriveClient(myKey);
 
-var orgs = await client.Organizations.GetAsync();
+var orgService = new OrganizationEntityService<MyCustomOrganization>(client);
+var orgs = await orgService.GetAsync();
 
 public class MyCustomOrganization : Organization
 {
